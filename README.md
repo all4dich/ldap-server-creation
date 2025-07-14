@@ -18,7 +18,7 @@ Before you begin, ensure you have the following installed:
 - `docker-compose.yaml`: Defines the OpenLDAP and phpLDAPadmin services, networks, and volumes.
 - `base.ldif`: LDIF file to create the initial directory structure (`ou=people`, `ou=tasks`, `ou=teams`).
 - `admin.ldif`: LDIF file to create the administrative user.
-- `user_spark.ldif`: An example LDIF file for creating a new user.
+- `user_sunjoopark.ldif`: An example LDIF file for creating a new user.
 - `all-commands.sh`: A helper script to automate the entire setup process.
 - `dex-ldap-config.yaml`: An example Dex configuration for integrating with Kubeflow.
 - `data/`: Directory used for persistent LDAP data and configuration.
@@ -64,8 +64,8 @@ If you prefer to run the steps manually, follow this guide.
     # Add the admin user
     docker-compose exec openldap ldapadd -x -D "cn=admin,dc=sunjoo,dc=org" -w adminpassword -f /container/service/slapd/assets/test-data/admin.ldif
 
-    # Add the example user 'spark'
-    docker-compose exec openldap ldapadd -x -D "cn=admin,dc=sunjoo,dc=org" -w adminpassword -f /container/service/slapd/assets/test-data/user_spark.ldif
+    # Add the example user 'sunjoopark'
+    docker-compose exec openldap ldapadd -x -D "cn=admin,dc=sunjoo,dc=org" -w adminpassword -f /container/service/slapd/assets/test-data/user_sunjoopark.ldif
     ```
 
 ## Verification
@@ -80,8 +80,8 @@ If you prefer to run the steps manually, follow this guide.
 2.  **Search the LDAP Directory:**
     Use `ldapsearch` to query the directory and verify that the entries were created successfully.
     ```bash
-    # Search for the user 'spark'
-    ldapsearch -x -H ldap://localhost:389 -b "uid=spark,ou=people,dc=sunjoo,dc=org"
+    # Search for the user 'sunjoopark'
+    ldapsearch -x -H ldap://localhost:389 -b "uid=sunjoopark,ou=people,dc=sunjoo,dc=org"
     ```
 
 ## Accessing Services

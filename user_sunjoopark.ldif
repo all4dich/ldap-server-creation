@@ -1,4 +1,4 @@
-dn: uid=spark,ou=people,dc=sunjoo,dc=org
+dn: uid=sunjoopark,ou=people,dc=sunjoo,dc=org
 objectClass: inetOrgPerson
 objectClass: organizationalPerson
 objectClass: person
@@ -6,10 +6,10 @@ objectClass: posixAccount
 cn: Sunjoo Park
 sn: Park
 givenName: Sunjoo
-uid: spark
+uid: sunjoopark 
 userPassword: kuie1996t
 uidNumber: 1000
 gidNumber: 1000
-homeDirectory: /home/spark
+homeDirectory: /home/sunjoopark
 mail: all4dich@gmail.com
 loginShell: /bin/bash

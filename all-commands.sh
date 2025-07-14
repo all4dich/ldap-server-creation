@@ -25,13 +25,13 @@ docker-compose exec openldap ldapadd -x -D "cn=admin,dc=sunjoo,dc=org" -w adminp
 echo "Adding admin user..."
 docker-compose exec openldap ldapadd -x -D "cn=admin,dc=sunjoo,dc=org" -w adminpassword -f /container/service/slapd/assets/test-data/admin.ldif
 
-# 6. Add the user 'spark'.
-echo "Adding user 'spark'..."
-docker-compose exec openldap ldapadd -x -D "cn=admin,dc=sunjoo,dc=org" -w adminpassword -f /container/service/slapd/assets/test-data/user_spark.ldif
+# 6. Add the user 'sunjoopark'.
+echo "Adding user 'sunjoopark'..."
+docker-compose exec openldap ldapadd -x -D "cn=admin,dc=sunjoo,dc=org" -w adminpassword -f /container/service/slapd/assets/test-data/user_sunjoopark.ldif
 
 # 7. Verify the setup by searching for the newly created user.
-echo "Verifying user 'spark' was created..."
-ldapsearch -x -H ldap://localhost:389 -b "uid=spark,ou=people,dc=sunjoo,dc=org"
+echo "Verifying user 'sunjoopark' was created..."
+ldapsearch -x -H ldap://localhost:389 -b "uid=sunjoopark,ou=people,dc=sunjoo,dc=org"
 
 echo -e "\nSetup complete!"
 echo "You can access phpLDAPadmin at http://localhost:8080"

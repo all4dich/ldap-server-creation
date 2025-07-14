@@ -18,7 +18,7 @@ services:
       - ./data/slapd.d:/etc/ldap/slapd.d
       - ./base.ldif:/container/service/slapd/assets/test-data/base.ldif
       - ./admin.ldif:/container/service/slapd/assets/test-data/admin.ldif
-      - ./user_spark.ldif:/container/service/slapd/assets/test-data/user_spark.ldif
+      - ./user_sunjoopark.ldif:/container/service/slapd/assets/test-data/user_sunjoopark.ldif
     networks:
       - ldap-network
   phpldapadmin:

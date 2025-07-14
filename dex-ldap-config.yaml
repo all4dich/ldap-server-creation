@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dex
+  namespace: auth # Or your Kubeflow namespace
+data:
+  config.yaml: |
+    # The base URL of Dex. This must be reachable by your clients.
+    issuer: http://<DEX_SERVICE_URL>:5556
+
+    # The storage backend for Dex. For production, use a persistent backend like etcd, PostgreSQL, etc.
+    storage:
+      type: sqlite3
+      config:
+        file: /tmp/dex.db
+
+    # The web server configuration.
+    web:
+      http: 0.0.0.0:5556
+
+    # Connectors configure the upstream identity providers.
+    connectors:
+    - type: ldap
+      # A unique ID for this connector.
+      id: ldap
+      # A user-friendly name for this connector.
+      name: "LDAP"
+      config:
+        # The host and port of the LDAP server.
+        # NOTE: This assumes Dex can resolve 'openldap'. If Dex is outside the Docker network,
+        # you'll need to use the host's IP address and the exposed port (localhost:389).
+        host: openldap:389
+
+        # We are not using TLS for this setup.
+        insecureNoSSL: true
+
+        # The DN and password for an account that can search the directory.
+        # In a real environment, use a dedicated read-only service account and store the password securely (e.g., in a K8s secret).
+        bindDN: "cn=admin,dc=sunjoo,dc=org"
+        bindPW: "adminpassword"
+
+        # The configuration for searching for users.
+        userSearch:
+          # The base DN to start the search from.
+          baseDN: "ou=people,dc=sunjoo,dc=org"
+          # The attribute to use for the username.
+          username: "uid"
+          # The attribute to use as the unique ID for the user.
+          idAttr: "uid"
+          # The attribute for the user's email address.
+          emailAttr: "mail"
+          # The attribute for the user's full name.
+          nameAttr: "cn"
+
+        # The configuration for searching for groups.
+        # This is required for RBAC in Kubeflow.
+        groupSearch:
+          # The base DN to start the search from.
+          baseDN: "ou=teams,dc=sunjoo,dc=org"
+          # A filter to select group objects. Assumes groups use 'groupOfNames'.
+          filter: "(objectClass=groupOfNames)"
+          # Links a user to a group. 'userAttr' is the attribute on the user entry (DN)
+          # and 'groupAttr' is the attribute on the group entry (member).
+          userAttr: "dn"
+          groupAttr: "member"
+          # The attribute for the group's name.
+          nameAttr: "cn"

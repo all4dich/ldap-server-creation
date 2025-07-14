@@ -1,0 +1,13 @@
+dn: uid=admin,ou=people,dc=sunjoo,dc=org
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+cn: Admin
+sn: Admin
+uid: admin
+uidNumber: 5000
+gidNumber: 5000
+homeDirectory: /home/admin
+loginShell: /bin/bash
+userPassword: adminpassword

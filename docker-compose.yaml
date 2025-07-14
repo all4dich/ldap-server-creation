@@ -1,0 +1,26 @@
+services:
+  openldap:
+    image: osixia/openldap:1.5.0
+    container_name: openldap
+    environment:
+      - LDAP_ORGANISATION=sunjoo
+      - LDAP_DOMAIN=sunjoo.org
+      - LDAP_ADMIN_PASSWORD=adminpassword
+      - LDAP_CONFIG_PASSWORD=configpassword
+      - LDAP_READONLY_USER=false
+      - LDAP_READONLY_USER_PASSWORD=readonly
+      - LDAP_TLS_ENFORCE=false
+    ports:
+      - "389:389"
+      - "636:636"
+    volumes:
+      - ./data/ldap:/var/lib/ldap
+      - ./data/slapd.d:/etc/ldap/slapd.d
+      - ./base.ldif:/container/service/slapd/assets/test-data/base.ldif
+      - ./admin.ldif:/container/service/slapd/assets/test-data/admin.ldif
+    networks:
+      - ldap-network
+
+networks:
+  ldap-network:
+    driver: bridge

@@ -1,0 +1,11 @@
+dn: ou=people,dc=sunjoo,dc=org
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=tasks,dc=sunjoo,dc=org
+objectClass: organizationalUnit
+ou: tasks
+
+dn: ou=teams,dc=sunjoo,dc=org
+objectClass: organizationalUnit
+ou: teams

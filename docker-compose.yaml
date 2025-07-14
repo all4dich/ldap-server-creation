@@ -20,6 +20,18 @@ services:
       - ./admin.ldif:/container/service/slapd/assets/test-data/admin.ldif
     networks:
       - ldap-network
+  phpldapadmin:
+    image: osixia/phpldapadmin:latest
+    container_name: phpldapadmin
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: openldap
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+      - "8080:80"
+    networks:
+      - ldap-network
+    depends_on:
+      - openldap
 
 networks:
   ldap-network:

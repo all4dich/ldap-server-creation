@@ -1,0 +1,15 @@
+dn: uid=soyulpark,ou=people,dc=sunjoo,dc=org
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: posixAccount
+cn: Soyul Park
+sn: soyulpark
+givenName: Soyul
+uid: soyulpark
+userPassword: 12345678
+uidNumber: 1001
+gidNumber: 1001
+homeDirectory: /home/soyulpark
+mail: all4dich@naver.com
+loginShell: /bin/bash
